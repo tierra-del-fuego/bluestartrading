@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ürünler - Bluestar Trading</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .product-card {
+      background-color: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .product-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .product-images img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .product-card h3 {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+    }
+
+    .product-card p {
+      font-weight: bold;
+      color: #10b981;
+    }
+
+    .product-card a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      background-color: #2563eb;
+      color: white;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .product-card a:hover {
+      background-color: #1d4ed8;
+    }
+
+    footer {
+      background-color: #f3f4f6;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bluestar Trading</h1>
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="products.html">Ürünler</a>
+      <a href="about.html">Hakkımızda</a>
+      <a href="contact.html">İletişim</a>
+    </nav>
+  </header>
+
+  <main class="products" id="productContainer">
+    <p>Ürünler yükleniyor...</p>
+  </main>
+
+  <footer>
+    &copy; 2025 Bluestar Trading - Tüm hakları saklıdır.
+  </footer>
+
+  <script>
+    fetch('products.json')
+      .then(response => response.json())
+      .then(products => {
+        const container = document.getElementById('productContainer');
+        container.innerHTML = '';
+        products.forEach(product => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+
+          let imageHTML = '<div class="product-images">';
+          if (product.images && product.images.length > 0) {
+            product.images.forEach(img => {
+              imageHTML += `<img src="${img}" alt="${product.title}">`;
+            });
+          }
+          imageHTML += '</div>';
+
+          card.innerHTML = `
+            ${imageHTML}
+            <h3>${product.title}</h3>
+            <p>${product.price}</p>
+            <a href="${product.link}" target="_blank">eBay'de Gör</a>
+          `;
+
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        document.getElementById('productContainer').innerHTML = '<p>Veri yüklenemedi.</p>';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
