@@ -1,164 +1,128 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ürünler - Bluestar Trading</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ürün Ekleme Paneli</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9fafb;
-      color: #1f2937;
-    }
-
-    header {
-      background-color: #1f2937;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    header h1 {
-      font-size: 1.5rem;
-    }
-
-    nav {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      background-color: #f3f4f6;
       padding: 2rem;
     }
-
-    .product-card {
-      background-color: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      padding: 1rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    h1 {
       text-align: center;
+      margin-bottom: 2rem;
     }
-
-    .product-images {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-      margin-bottom: 1rem;
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-
-    .product-images img {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      border: 1px solid #ddd;
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
       border-radius: 4px;
     }
-
-    .product-card h3 {
-      font-size: 1rem;
-      margin: 0.5rem 0;
-    }
-
-    .product-card p {
-      font-weight: bold;
-      color: #10b981;
-    }
-
-    .product-card a {
-      display: inline-block;
-      margin-top: 0.5rem;
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem;
       background-color: #2563eb;
       color: white;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
+      border: none;
       border-radius: 4px;
+      width: 100%;
+      font-size: 1rem;
     }
-
-    .product-card a:hover {
-      background-color: #1d4ed8;
-    }
-
-    footer {
-      background-color: #f3f4f6;
-      text-align: center;
+    pre {
+      background-color: #111827;
+      color: #10b981;
       padding: 1rem;
-      font-size: 0.9rem;
-      color: #4b5563;
+      margin-top: 2rem;
+      border-radius: 8px;
+      overflow-x: auto;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Bluestar Trading</h1>
-    <nav>
-      <a href="index.html">Ana Sayfa</a>
-      <a href="products.html">Ürünler</a>
-      <a href="about.html">Hakkımızda</a>
-      <a href="contact.html">İletişim</a>
-    </nav>
-  </header>
+  <h1>Ürün Ekle</h1>
+  <form id="productForm">
+    <label>Ürün Adı:</label>
+    <input type="text" id="title" required />
 
-  <main class="products" id="productContainer">
-    <p>Ürünler yükleniyor...</p>
-  </main>
+    <label>Fiyat:</label>
+    <input type="text" id="price" required />
 
-  <footer>
-    &copy; 2025 Bluestar Trading - Tüm hakları saklıdır.
-  </footer>
+    <label>eBay Linki:</label>
+    <input type="text" id="link" required />
+
+    <!-- 10 Görsel URL Alanı -->
+    <div id="imageInputs">
+      <label>Görsel URL 1:</label>
+      <input type="text" class="image" required />
+      <label>Görsel URL 2:</label>
+      <input type="text" class="image" />
+      <label>Görsel URL 3:</label>
+      <input type="text" class="image" />
+      <label>Görsel URL 4:</label>
+      <input type="text" class="image" />
+      <label>Görsel URL 5:</label>
+      <input type="text" class="image" />
+      <label>Görsel URL 6:</label>
+      <input type="text" class="image" />
+      <label>Görsel URL 7:</label>
+      <input type="text" class="image" />
+      <label>Görsel URL 8:</label>
+      <input type="text" class="image" />
+      <label>Görsel URL 9:</label>
+      <input type="text" class="image" />
+      <label>Görsel URL 10:</label>
+      <input type="text" class="image" />
+    </div>
+
+    <button type="submit">Ekle ve JSON Oluştur</button>
+  </form>
+
+  <pre id="output"></pre>
 
   <script>
-    fetch('products.json')
-      .then(response => response.json())
-      .then(products => {
-        const container = document.getElementById('productContainer');
-        container.innerHTML = '';
-        products.forEach(product => {
-          const card = document.createElement('div');
-          card.className = 'product-card';
+    const form = document.getElementById("productForm");
+    const output = document.getElementById("output");
+    const products = [];
 
-          let imageHTML = '<div class="product-images">';
-          if (product.images && product.images.length > 0) {
-            product.images.forEach(img => {
-              imageHTML += `<img src="${img}" alt="${product.title}">`;
-            });
-          }
-          imageHTML += '</div>';
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-          card.innerHTML = `
-            ${imageHTML}
-            <h3>${product.title}</h3>
-            <p>${product.price}</p>
-            <a href="${product.link}" target="_blank">eBay'de Gör</a>
-          `;
+      const title = document.getElementById("title").value;
+      const price = document.getElementById("price").value;
+      const link = document.getElementById("link").value;
+      const imageElements = document.querySelectorAll(".image");
+      const images = Array.from(imageElements)
+        .map((input) => input.value)
+        .filter((val) => val.trim() !== "");
 
-          container.appendChild(card);
-        });
-      })
-      .catch(err => {
-        document.getElementById('productContainer').innerHTML = '<p>Veri yüklenemedi.</p>';
-        console.error(err);
-      });
+      const newProduct = {
+        title,
+        price,
+        link,
+        images,
+      };
+
+      products.push(newProduct);
+      output.textContent = JSON.stringify(products, null, 2);
+
+      form.reset();
+    });
   </script>
 </body>
 </html>
