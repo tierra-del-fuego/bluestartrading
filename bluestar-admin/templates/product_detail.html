@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ product.title }} - Detay</title>
+</head>
+<body>
+  <h1>{{ product.title }}</h1>
+  <h2>Fiyat: {{ product.price }}</h2>
+  <a href="{{ product.link }}" target="_blank">eBay'de Gör</a>
+  <hr>
+  {% for img in product.images %}
+    <img src="{{ img }}" width="300">
+  {% endfor %}
+</body>
+</html>
