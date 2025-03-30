@@ -1,11 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Bluestar Trading Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bluestar Trading</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #f3f4f6;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    @media (max-width: 600px) {
+      header, nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Selam hacı, site yayında!</h1>
-  <p>This is a test page hosted on GitHub Pages.</p>
+  <header>
+    <h1>Bluestar Trading</h1>
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="products.html">Ürünler</a>
+      <a href="about.html">Hakkımızda</a>
+      <a href="contact.html">İletişim</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Selam hacı, site yayında!</h2>
+    <p>Bluestar Trading web sitesine hoş geldin. Burada eBay'deki ürünlerini sergileyebilir, iletisim kurabilir ve daha fazlasını yapabilirsin.</p>
+  </main>
+
+  <footer>
+    &copy; 2025 Bluestar Trading - Tüm hakları saklıdır.
+  </footer>
 </body>
 </html>
