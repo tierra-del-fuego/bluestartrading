@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[3708],{83708:function(e,t,a){a.r(t),a.d(t,{AlphabetList:function(){return r}});var l=a(85893);a(67294);var s=a(92280);let r=e=>{let{children:t}=e;return(0,l.jsx)("div",{className:"alphabet-list",children:t})};r.displayName="AlphabetList",t.default=(0,s.r)(r)}}]);

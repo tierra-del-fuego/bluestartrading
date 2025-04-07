@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[5229],{5229:function(e,t,s){s.r(t);var a=s(85893);s(67294);var n=s(45697),r=s.n(n),u=s(63537);let l=e=>{let{text:t}=e;return(0,a.jsx)(u.default,{className:"footnote",text:t})};l.displayName="Footnote",l.propTypes={text:r().string.isRequired},t.default=l}}]);

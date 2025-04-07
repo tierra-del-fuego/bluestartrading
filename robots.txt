@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+sitemap: https://us.pg.com/sitemap.xml
+Disallow: https://origprod-cus-us.pg.com/health-probe/
+Disallow: https://origprod-eus2-us.pg.com/health-probe/
+Disallow: https://us.pg.com/health-probe/
